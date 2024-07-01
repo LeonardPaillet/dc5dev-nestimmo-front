@@ -14,6 +14,7 @@ const CategoryDetail = () => {
     const { id } = useParams<CategoryDetailParams>();
     const router = useRouter();
     const { toast } = useToast()
+    let isData = false
 
     const { isPending, error, data } = useQuery({
         queryKey: ['repoData'],
@@ -37,6 +38,9 @@ const CategoryDetail = () => {
 
     if(isPending) return <div className="h-full flex justify-center items-center">Loading...</div>
     
+    if(data.posts.length > 0){
+        isData = true
+    }
     return ( 
         <div>
             <h1>{data.name}</h1>
@@ -44,6 +48,7 @@ const CategoryDetail = () => {
             <DialogConfirmDelete 
                 handleDelete={handleDelete} 
                 isPending={mutation.isPending}
+                isDisable={isData}
             />
         </div>
      );

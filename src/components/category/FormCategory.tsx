@@ -28,7 +28,10 @@ const FormCategory = ({ setOpen } : FormCategoryProps) => {
             name: e.target.name.value,
         }
 
-        mutation.mutate(createCategoryDTO);
+        if(createCategoryDTO.name){
+            mutation.mutate(createCategoryDTO);
+        }
+        
     }
 
     return ( 

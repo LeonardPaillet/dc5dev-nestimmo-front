@@ -12,14 +12,21 @@ import { Button } from "@/components/ui/button"
 type DialogConfirmDeleteProps = {
     handleDelete: () => void;
     isPending: boolean;
+    isDisable: boolean;
 }
 
-const DialogConfirmDelete = ({ handleDelete, isPending }: DialogConfirmDeleteProps) => {
+const DialogConfirmDelete = ({ handleDelete, isPending, isDisable }: DialogConfirmDeleteProps) => {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button variant="destructive">
-                    Delete
+                <Button disabled={isDisable} variant="destructive">
+                    {
+                        isDisable ? (
+                            "Impossible de supprimer la catégorie"
+                        ) :(
+                            "Supprimer"
+                        )
+                    }
                 </Button>
             </DialogTrigger>
             <DialogContent>
